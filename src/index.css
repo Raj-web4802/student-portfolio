@@ -1,0 +1,152 @@
+:root {
+  --text: #334155;
+  --text-h: #0f172a;
+  --bg: #eef7ff;
+  --surface: rgba(255, 255, 255, 0.84);
+  --surface-soft: rgba(255, 255, 255, 0.68);
+  --surface-alt: rgba(255, 255, 255, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --border: #dbeafe;
+  --code-bg: #dbeafe;
+  --accent: #2563eb;
+  --accent-dark: #1e40af;
+  --accent-bg: rgba(37, 99, 235, 0.12);
+  --accent-border: rgba(37, 99, 235, 0.28);
+  --social-bg: rgba(255, 255, 255, 0.6);
+  --bg-spot-top: rgba(37, 99, 235, 0.16);
+  --bg-spot-bottom: rgba(56, 189, 248, 0.08);
+  --bg-gradient-start: #faf8ff;
+  --shadow:
+    rgba(15, 23, 42, 0.08) 0 24px 48px -24px,
+    rgba(15, 23, 42, 0.06) 0 12px 24px -18px;
+
+  --sans: Inter, 'Segoe UI', system-ui, sans-serif;
+  --heading: 'Georgia', 'Times New Roman', serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+/* Tailwind base (added) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #c5c0d3;
+    --text-h: #f8f7ff;
+    --bg: #050816;
+    --surface: rgba(15, 23, 42, 0.8);
+    --surface-soft: rgba(15, 23, 42, 0.72);
+    --card-bg: rgba(15, 23, 42, 0.88);
+    --nav-bg: rgba(15, 23, 42, 0.75);
+    --border: #334155;
+    --code-bg: #1d293b;
+    --accent: #60a5fa;
+    --accent-dark: #3b82f6;
+    --accent-bg: rgba(96, 165, 250, 0.14);
+    --accent-border: rgba(96, 165, 250, 0.28);
+    --social-bg: rgba(255, 255, 255, 0.06);
+    --shadow:
+      rgba(0, 0, 0, 0.45) 0 24px 48px -24px,
+      rgba(0, 0, 0, 0.28) 0 12px 24px -18px;
+  }
+}
+:root[data-theme="dark"] {
+  /* Only switch UI variables — do not override page background */
+  --text: #c5c0d3;
+  --text-h: #f8f7ff;
+  --surface: rgba(15, 23, 42, 0.8);
+  --surface-soft: rgba(15, 23, 42, 0.72);
+  --card-bg: rgba(15, 23, 42, 0.88);
+  --nav-bg: rgba(15, 23, 42, 0.75);
+  --border: #334155;
+  --code-bg: #1d293b;
+  --accent: #60a5fa;
+  --accent-dark: #3b82f6;
+  --accent-bg: rgba(96, 165, 250, 0.14);
+  --accent-border: rgba(96, 165, 250, 0.28);
+  --social-bg: rgba(255, 255, 255, 0.06);
+  --shadow:
+    rgba(0, 0, 0, 0.45) 0 24px 48px -24px,
+    rgba(0, 0, 0, 0.28) 0 12px 24px -18px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, var(--bg-spot-top), transparent 28%),
+    radial-gradient(circle at bottom right, var(--bg-spot-bottom), transparent 26%),
+    linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg) 65%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  letter-spacing: -0.04em;
+  margin: 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+  }
+}
+h2 {
+  font-size: 1.7rem;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
