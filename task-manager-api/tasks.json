@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Learn Node.js and Express",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "title": "Build RESTful API with Middleware",
+    "completed": true
+  },
+  {
+    "id": 3,
+    "title": "Test endpoints with Postman",
+    "completed": false
+  }
+]

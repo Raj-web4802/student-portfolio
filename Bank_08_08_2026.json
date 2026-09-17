@@ -1,0 +1,398 @@
+{
+  "collections": {
+    "Bank.Account": {
+      "ns": "Bank.Account",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "balance",
+          "branch_id",
+          "customer_id",
+          "open_date",
+          "type"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "int"
+          },
+          "balance": {
+            "bsonType": "int"
+          },
+          "branch_id": {
+            "bsonType": "int"
+          },
+          "customer_id": {
+            "bsonType": "int"
+          },
+          "open_date": {
+            "bsonType": "date"
+          },
+          "type": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Bank.BankTransaction": {
+      "ns": "Bank.BankTransaction",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "account_id",
+          "amount",
+          "employee_id",
+          "txn_date",
+          "type"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "int"
+          },
+          "account_id": {
+            "bsonType": "int"
+          },
+          "amount": {
+            "bsonType": "int"
+          },
+          "employee_id": {
+            "bsonType": "int"
+          },
+          "txn_date": {
+            "bsonType": "date"
+          },
+          "type": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Bank.Branch": {
+      "ns": "Bank.Branch",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "city",
+          "ifsc",
+          "name"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "int"
+          },
+          "city": {
+            "bsonType": "string"
+          },
+          "ifsc": {
+            "bsonType": "string"
+          },
+          "name": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Bank.Customer": {
+      "ns": "Bank.Customer",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "city",
+          "email",
+          "name",
+          "phone"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "int"
+          },
+          "city": {
+            "bsonType": "string"
+          },
+          "email": {
+            "bsonType": "string"
+          },
+          "name": {
+            "bsonType": "string"
+          },
+          "phone": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Bank.Employee": {
+      "ns": "Bank.Employee",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "branch_id",
+          "commission",
+          "email",
+          "job_id",
+          "name",
+          "salary"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "int"
+          },
+          "branch_id": {
+            "bsonType": "int"
+          },
+          "commission": {
+            "bsonType": [
+              "null",
+              "int"
+            ]
+          },
+          "email": {
+            "bsonType": "string"
+          },
+          "job_id": {
+            "bsonType": "string"
+          },
+          "name": {
+            "bsonType": "string"
+          },
+          "salary": {
+            "bsonType": "int"
+          }
+        }
+      }
+    },
+    "Bank.Job": {
+      "ns": "Bank.Job",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "max_sal",
+          "min_sal",
+          "title"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "string"
+          },
+          "max_sal": {
+            "bsonType": "int"
+          },
+          "min_sal": {
+            "bsonType": "int"
+          },
+          "title": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Bank.Loan": {
+      "ns": "Bank.Loan",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "amount",
+          "branch_id",
+          "customer_id",
+          "interest",
+          "loan_date",
+          "type"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "int"
+          },
+          "amount": {
+            "bsonType": "int"
+          },
+          "branch_id": {
+            "bsonType": "int"
+          },
+          "customer_id": {
+            "bsonType": "int"
+          },
+          "interest": {
+            "bsonType": [
+              "double",
+              "int"
+            ]
+          },
+          "loan_date": {
+            "bsonType": "date"
+          },
+          "type": {
+            "bsonType": "string"
+          }
+        }
+      }
+    }
+  },
+  "relationships": [
+    {
+      "id": "35df1685-d740-4e0f-a46f-b86ac54cd31b",
+      "relationship": [
+        {
+          "ns": "Bank.BankTransaction",
+          "cardinality": 1,
+          "fields": [
+            "account_id"
+          ]
+        },
+        {
+          "ns": "Bank.Account",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "5eed9280-ba38-4da4-8696-3f96236b1615",
+      "relationship": [
+        {
+          "ns": "Bank.Account",
+          "cardinality": 1,
+          "fields": [
+            "branch_id"
+          ]
+        },
+        {
+          "ns": "Bank.Branch",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "524fb3d7-454d-4399-a75c-f013be9d7949",
+      "relationship": [
+        {
+          "ns": "Bank.Employee",
+          "cardinality": 1,
+          "fields": [
+            "branch_id"
+          ]
+        },
+        {
+          "ns": "Bank.Branch",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "9fd6bb67-de9a-48e2-839e-6216368e71b3",
+      "relationship": [
+        {
+          "ns": "Bank.Loan",
+          "cardinality": 1,
+          "fields": [
+            "branch_id"
+          ]
+        },
+        {
+          "ns": "Bank.Branch",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "b96b365d-df14-4602-9fe7-aef96d9ea709",
+      "relationship": [
+        {
+          "ns": "Bank.Account",
+          "cardinality": 1,
+          "fields": [
+            "customer_id"
+          ]
+        },
+        {
+          "ns": "Bank.Customer",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "99a97c4b-f527-4ff5-b79b-5adeec36595a",
+      "relationship": [
+        {
+          "ns": "Bank.Loan",
+          "cardinality": 1,
+          "fields": [
+            "customer_id"
+          ]
+        },
+        {
+          "ns": "Bank.Customer",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "384960f0-76cb-4a27-87f3-be6d77639cc9",
+      "relationship": [
+        {
+          "ns": "Bank.BankTransaction",
+          "cardinality": 1,
+          "fields": [
+            "employee_id"
+          ]
+        },
+        {
+          "ns": "Bank.Employee",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "22eb7b1f-9b4d-49a8-b326-4b75a1e93641",
+      "relationship": [
+        {
+          "ns": "Bank.Employee",
+          "cardinality": 1,
+          "fields": [
+            "job_id"
+          ]
+        },
+        {
+          "ns": "Bank.Job",
+          "cardinality": 1,
+          "fields": [
+            "_id"
+          ]
+        }
+      ],
+      "isInferred": true
+    }
+  ]
+}
