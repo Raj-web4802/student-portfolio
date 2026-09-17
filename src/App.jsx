@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import Home from "./Pages/Home";
 import Projects from "./Pages/Projects";
 import Contact from "./Pages/Contact";
+import Tasks from "./Pages/Tasks";
 import NotFound from "./Pages/NotFound";
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         <Route path="/projects" element={<Projects />} />
 
         <Route path="/contact" element={<Contact />} />
+
+        <Route path="/tasks" element={<Tasks />} />
 
         <Route path="*" element={<NotFound />} />
 

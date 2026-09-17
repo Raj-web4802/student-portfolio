@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Task = require('./models/Task');
@@ -7,6 +8,8 @@ dotenv.config();
 
 const app = express();
 const router = express.Router();
+
+app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173'] }));
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url} - ${new Date().toISOString()}`);
@@ -96,7 +99,7 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   console.error(err.stack || err);
 
   if (err.name === 'ValidationError') {
