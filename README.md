@@ -10,7 +10,7 @@ This repository contains the React portfolio frontend and the Express/MongoDB ta
 2. Create `task-manager-api/.env` from `task-manager-api/.env.example`:
 
 ```env
-MONGO_URI=mongodb://127.0.0.1:27017/task_manager
+MONGO_URI=mongodb://127.0.0.1:27017/taskmanager
 PORT=5000
 ```
 

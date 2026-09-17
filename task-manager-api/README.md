@@ -27,7 +27,7 @@ npm install
 3. Copy `.env.example` to `.env` and set the connection string:
 
 ```env
-MONGO_URI=mongodb://127.0.0.1:27017/task_manager
+MONGO_URI=mongodb://127.0.0.1:27017/taskmanager
 PORT=5000
 ```
 
