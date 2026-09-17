@@ -7,6 +7,7 @@ function NavBar() {
       <Link to="/projects">Projects</Link>
       <Link to="/contact">Contact</Link>
       <Link className="nav-task-link" to="/tasks">Task workspace</Link>
+      <Link to="/login">Sign in</Link>
     </nav>
   );
 }

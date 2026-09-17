@@ -1,11 +1,74 @@
 {
   "info": {
     "_postman_id": "a4d3e2f1-5678-4321-9876-123456789abc",
-    "name": "Task Manager API - Practical 5",
-    "description": "Postman Collection for Practical 5: MongoDB-backed RESTful Task Management API using Node.js, Express, and Mongoose.",
+    "name": "Task Manager API - Practical 7",
+    "description": "Postman Collection for Practical 7: JWT-authenticated MongoDB task API.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "taskId",
+      "value": ""
+    }
+  ],
   "item": [
+    {
+      "name": "0. Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"practical7-password\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "http://localhost:5000/auth/register"
+      }
+    },
+    {
+      "name": "1. Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"practical7-password\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "http://localhost:5000/auth/login"
+      }
+    },
+    {
+      "name": "2. Current User",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/me"
+      }
+    },
     {
       "name": "1. GET All Tasks",
       "request": {

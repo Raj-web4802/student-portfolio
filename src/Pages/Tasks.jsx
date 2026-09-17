@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Check, CircleAlert, LoaderCircle, Plus, Trash2, X } from "lucide-react";
-import { createTask, deleteTask, getTasks, updateTask } from "../lib/api";
+import { Check, CircleAlert, LogOut, LoaderCircle, Plus, Trash2, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { createTask, deleteTask, getCurrentUser, getTasks, updateTask } from "../lib/api";
 
 const emptyForm = { title: "", description: "", priority: "medium" };
 
 function Tasks() {
+  const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
+  const [user, setUser] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -14,13 +17,25 @@ function Tasks() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
+    if (!localStorage.getItem("taskmanager_token")) {
+      navigate("/login", { replace: true });
+      return undefined;
+    }
     let active = true;
-    getTasks()
-      .then((body) => {
-        if (active) setTasks(body.tasks || []);
+    Promise.all([getTasks(), getCurrentUser()])
+      .then(([taskBody, userBody]) => {
+        if (active) {
+          setTasks(taskBody.tasks || []);
+          setUser(userBody.user);
+        }
       })
       .catch((requestError) => {
-        if (active) setError(requestError.message);
+        if (requestError.status === 401) {
+          localStorage.removeItem("taskmanager_token");
+          navigate("/login", { replace: true });
+        } else if (active) {
+          setError(requestError.message);
+        }
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -28,7 +43,21 @@ function Tasks() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [navigate]);
+
+  function handleAuthError(requestError) {
+    if (requestError.status === 401) {
+      localStorage.removeItem("taskmanager_token");
+      navigate("/login", { replace: true });
+      return true;
+    }
+    return false;
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("taskmanager_token");
+    navigate("/login", { replace: true });
+  }
 
   function showNotice(message) {
     setNotice(message);
@@ -68,7 +97,7 @@ function Tasks() {
       showNotice("Task created and saved to MongoDB.");
     } catch (requestError) {
       setTasks((current) => current.filter((task) => task._id !== optimisticTask._id));
-      setError(requestError.message);
+      if (!handleAuthError(requestError)) setError(requestError.message);
     } finally {
       setSaving(false);
     }
@@ -84,7 +113,7 @@ function Tasks() {
       )));
       showNotice(task.completed ? "Task marked active." : "Task completed.");
     } catch (requestError) {
-      setError(requestError.message);
+      if (!handleAuthError(requestError)) setError(requestError.message);
     } finally {
       setBusyId(null);
     }
@@ -99,7 +128,7 @@ function Tasks() {
       setTasks((current) => current.filter((item) => item._id !== task._id));
       showNotice("Task deleted.");
     } catch (requestError) {
-      setError(requestError.message);
+      if (!handleAuthError(requestError)) setError(requestError.message);
     } finally {
       setBusyId(null);
     }
@@ -109,15 +138,18 @@ function Tasks() {
     <main className="page-section tasks-page">
       <section className="tasks-intro">
         <div>
-          <p className="eyebrow">Practical 6 / live workspace</p>
+          <p className="eyebrow">Practical 7 / authenticated workspace</p>
           <h1>Task control room</h1>
-          <p className="section-copy">
-            A React interface connected to your Express and MongoDB backend. Every change below is persisted through the API.
-          </p>
+          <p className="section-copy">Private task data for {user?.email || "your account"}. Every request is authorized by JWT.</p>
         </div>
-        <div className="task-count" aria-label={`${tasks.length} tasks in the database`}>
-          <strong>{tasks.length}</strong>
-          <span>tasks in MongoDB</span>
+        <div className="task-header-actions">
+          <div className="task-count" aria-label={`${tasks.length} tasks in the database`}>
+            <strong>{tasks.length}</strong>
+            <span>private tasks</span>
+          </div>
+          <button className="icon-button" type="button" onClick={handleLogout} title="Log out" aria-label="Log out">
+            <LogOut size={18} />
+          </button>
         </div>
       </section>
 

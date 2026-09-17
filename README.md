@@ -12,6 +12,7 @@ This repository contains the React portfolio frontend and the Express/MongoDB ta
 ```env
 MONGO_URI=mongodb://127.0.0.1:27017/taskmanager
 PORT=5000
+JWT_SECRET=replace-with-a-long-random-secret
 ```
 
 3. Start the API in one terminal:
@@ -31,11 +32,19 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/tasks` and use the Task workspace. It supports create, read, update, delete, loading/error states, optimistic creation rollback, delete confirmation, and operation notifications. Data is read from and persisted to MongoDB through the backend.
+Open `http://localhost:5173/login`, register an account, and then use the protected Task workspace. It supports JWT authentication, create/read/update/delete, loading/error states, optimistic creation rollback, delete confirmation, logout, and operation notifications. Data is scoped to the authenticated user and persisted to MongoDB through the backend.
 
 The frontend API URL defaults to `http://localhost:5000`. To use another backend URL, create a root `.env` file with `VITE_API_URL=...`.
 
 Run frontend checks with `npm run build` and `npm run lint`. Run backend checks from `task-manager-api` with `npm test`.
+
+## Practical 7 flow
+
+1. Register with `POST /auth/register` using an email and password of at least 8 characters.
+2. Login with `POST /auth/login` and copy the returned JWT.
+3. Send `Authorization: Bearer <token>` with `GET /me` and every `/tasks` request.
+4. Use the frontend login screen or Postman to create and manage private tasks.
+5. Logout clears the browser token. Missing, invalid, or expired tokens return `401`.
 
 ## Earlier Vite notes
 

@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import Projects from "./Pages/Projects";
 import Contact from "./Pages/Contact";
 import Tasks from "./Pages/Tasks";
+import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/tasks" element={<Tasks />} />
+
+        <Route path="/login" element={<Login />} />
 
         <Route path="*" element={<NotFound />} />
 

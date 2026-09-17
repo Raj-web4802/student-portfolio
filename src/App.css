@@ -336,6 +336,104 @@ main {
   padding: 28px 4px 6px;
 }
 
+.task-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-page {
+  min-height: 68vh;
+  place-items: center;
+}
+
+.auth-card {
+  width: min(100%, 520px);
+  display: grid;
+  gap: 18px;
+}
+
+.auth-card h1 {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1;
+}
+
+.auth-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.auth-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 7px;
+  background: var(--surface-alt);
+}
+
+.auth-switcher button {
+  padding: 9px;
+  border: 0;
+  border-radius: 5px;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.auth-switcher button.active {
+  color: var(--text-h);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-weight: 700;
+}
+
+.auth-form {
+  display: grid;
+  gap: 16px;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--text-h);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text-h);
+  background: var(--surface-alt);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.auth-form input:focus {
+  outline: 3px solid var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.auth-error {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid #f1b8b2;
+  border-radius: 7px;
+  color: #8d2e27;
+  background: #fff1ef;
+  font-size: 0.86rem;
+}
+
 .tasks-intro h1 {
   max-width: 12ch;
   font-size: clamp(2.6rem, 6vw, 5rem);

@@ -29,6 +29,7 @@ npm install
 ```env
 MONGO_URI=mongodb://127.0.0.1:27017/taskmanager
 PORT=5000
+JWT_SECRET=replace-with-a-long-random-secret
 ```
 
 The `.env` file is ignored by Git. Never commit credentials or a private connection string.
@@ -41,7 +42,23 @@ npm start
 
 The server connects to MongoDB before listening on `http://localhost:5000`.
 
-## Endpoints
+## Authentication
+
+Register and login are public. Passwords are hashed with bcrypt and never returned to clients. Login returns a JWT valid for one hour.
+
+| Method | Endpoint | Result |
+| --- | --- | --- |
+| POST | `/auth/register` | Create an account |
+| POST | `/auth/login` | Return a JWT and public user |
+| GET | `/me` | Return the authenticated user |
+
+Send this header with `/me` and all task requests:
+
+```text
+Authorization: Bearer YOUR_JWT_TOKEN
+```
+
+## Task Endpoints
 
 | Method | Endpoint | Result |
 | --- | --- | --- |
