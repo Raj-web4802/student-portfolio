@@ -1,8 +1,8 @@
 {
   "info": {
     "_postman_id": "a4d3e2f1-5678-4321-9876-123456789abc",
-    "name": "Task Manager API - Practical 4",
-    "description": "Postman Collection for Practical 4: RESTful Task Management API using Node.js and Express.",
+    "name": "Task Manager API - Practical 5",
+    "description": "Postman Collection for Practical 5: MongoDB-backed RESTful Task Management API using Node.js, Express, and Mongoose.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -32,7 +32,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5000/tasks/1",
+          "raw": "http://localhost:5000/tasks/REPLACE_WITH_MONGODB_OBJECT_ID",
           "protocol": "http",
           "host": [
             "localhost"
@@ -40,10 +40,10 @@
           "port": "5000",
           "path": [
             "tasks",
-            "1"
+            "REPLACE_WITH_MONGODB_OBJECT_ID"
           ]
         },
-        "description": "Retrieve a specific task by its numeric ID."
+        "description": "Retrieve a specific task by its MongoDB ObjectId. Replace the placeholder with the ID returned by POST /tasks."
       },
       "response": []
     },
@@ -60,7 +60,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"title\": \"Complete Practical 4 Assignment\",\n  \"completed\": false\n}",
+          "raw": "{\n  \"title\": \"Complete Practical 5 Assignment\",\n  \"description\": \"Connect the API to MongoDB\",\n  \"completed\": false,\n  \"priority\": \"high\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -95,7 +95,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"completed\": true\n}",
+          "raw": "{\n  \"completed\": true,\n  \"priority\": \"medium\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -103,7 +103,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/tasks/1",
+          "raw": "http://localhost:5000/tasks/REPLACE_WITH_MONGODB_OBJECT_ID",
           "protocol": "http",
           "host": [
             "localhost"
@@ -111,7 +111,7 @@
           "port": "5000",
           "path": [
             "tasks",
-            "1"
+            "REPLACE_WITH_MONGODB_OBJECT_ID"
           ]
         },
         "description": "Update an existing task by ID."
@@ -124,7 +124,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:5000/tasks/1",
+          "raw": "http://localhost:5000/tasks/REPLACE_WITH_MONGODB_OBJECT_ID",
           "protocol": "http",
           "host": [
             "localhost"
@@ -132,7 +132,7 @@
           "port": "5000",
           "path": [
             "tasks",
-            "1"
+            "REPLACE_WITH_MONGODB_OBJECT_ID"
           ]
         },
         "description": "Delete a task by ID."
